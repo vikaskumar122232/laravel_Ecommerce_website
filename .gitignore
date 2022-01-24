@@ -1,5 +1,5 @@
 vendor
-.env
 .env.example
 .editorconfig
 .styleci.yml
+artisan

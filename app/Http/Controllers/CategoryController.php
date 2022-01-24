@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = category::where('status','1')->get();
+        return view('admin.category.index',compact('categories'));
     }
 
     /**
@@ -24,7 +25,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.add');
+        $categories = category::whereNull('category_id')->get();
+        return view('admin.category.add',compact('categories'));
     }
 
     /**
@@ -35,7 +37,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $data  = array(
+           'name' =>$request->name ,
+           'category_id'=>$request->category_id,
+     );
+     $create = Category::create($data);
+     return redirect()->route('category.create');
     }
 
     /**
@@ -55,9 +62,14 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Request $request , Category $category)
     {
-        //
+        $id = $request->id;
+        $categories = Category::whereNull('category_id')->get();
+        $category = Category::find($id);
+        return view('admin.category.edit',compact('categories','category'));
+        
+    
     }
 
     /**
@@ -69,7 +81,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+       $id = $request->id;
+       $data  = array(
+        'name' =>$request->name ,
+        'category_id'=>$request->category_id,
+       );
+       $category = Category::find($id);
+       $category->update($data);
+       return redirect()->route('category.list');
     }
 
     /**

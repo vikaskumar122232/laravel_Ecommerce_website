@@ -24,13 +24,13 @@
         </div>
         <div class="x_content">
           <br>
-          <form id="demo-form2" data-parsley-validate="" class="form-horizontal form-label-left">
-
+          <form id="demo-form2" method="POST" action="{{route('category.store')}}"class="form-horizontal form-label-left">
+           @csrf
             <div class="form-group">
               <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Category Name <span class="required">*</span>
               </label>
               <div class="col-md-6 col-sm-6 col-xs-12">
-                <input type="text" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                <input type="text" id="name" name="name" required="required" class="form-control col-md-7 col-xs-12">
               </div>
             </div>
 
@@ -38,8 +38,12 @@
                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sub Category Of<span class="required">*</span>
                 </label>
                 <div class="col-md-6 col-sm-6 col-xs-12">
-                  <select required="required" class="form-control col-md-7 col-xs-12">
+                  <select  name="category_id" class="form-control col-md-7 col-xs-12">
                 <option value="">No Subcategory</option>
+                @foreach($categories as $category)
+                <option value="{{$category->id}}">{{$category->name}}</option>
+                  
+                @endforeach
                 </select>
                 </div>
               </div>
@@ -49,7 +53,7 @@
             <div class="form-group">
               <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 
-                <button type="submit" class="btn btn-success">Submit</button>
+                <input type="submit" name="submit" value="submit" class="btn btn-success">
               </div>
             </div>
 

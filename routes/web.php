@@ -30,7 +30,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'auth'] , function () {
-    Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
-    Route::get('/admin/logout',[AdminController::class,'logout'])->name('admin.logout');
-    Route::get('/category/add',[CategoryController::class,'create'])->name('category.create');
+Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
+Route::get('/admin/logout',[AdminController::class,'logout'])->name('admin.logout');
+Route::get('/category/add',[CategoryController::class,'create'])->name('category.create');
+Route::post('/category/add',[CategoryController::class,'store'])->name('category.store');
+Route::get('/category',[CategoryController::class,'index'])->name('category.list');
+Route::get('/category/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');
+Route::post('/category/update/{id}',[CategoryController::class,'update'])->name('category.update');
 });
