@@ -68,8 +68,8 @@ class CategoryController extends Controller
         $categories = Category::whereNull('category_id')->get();
         $category = Category::find($id);
         return view('admin.category.edit',compact('categories','category'));
-        
-    
+
+
     }
 
     /**
@@ -97,8 +97,12 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Request $request, Category $category)
     {
-        //
+        $id = $request->id;
+        $category= Category::find($id);
+        $category->delete($id);
+        return redirect()->route('category.list');
     }
+
 }

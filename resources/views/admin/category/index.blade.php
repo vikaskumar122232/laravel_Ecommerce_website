@@ -1,6 +1,6 @@
 @extends('admin.layout.layout')
  @section('content')
- 
+
  <table class="table">
  <thead>
   <tr>
@@ -23,12 +23,15 @@
     No parent category</td>
     @endif
     <td>{{$categorie->created_at}}</td>
-    <td><a href="{{route('category.edit',$categorie->id)}}" style="font-size:17px;padding:5px;"><i class="fa fa-edit"></i> </a> | <a href=""> <i class="fa fa-trash"></i></a></td>
-  </tr>  
+    <td><a href="{{route('category.edit',$categorie->id)}}" style="font-size:17px;padding:5px;"><i class="fa fa-edit"></i> </a> |
+         <a href="{{route('category.delete',$categorie->id)}}"
+        style="font-size:17px;padding:5px;"> <i class="fa fa-trash"></i></a></td>
+  </tr>
   @endforeach
-  
- 
+
+
 </tbody>
- 
+
 </table>
  @endsection
+

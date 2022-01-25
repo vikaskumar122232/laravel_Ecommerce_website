@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BaseController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,9 +33,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['middleware' => 'auth'] , function () {
 Route::get('/admin/dashboard',[AdminController::class,'dashboard'])->name('admin.dashboard');
 Route::get('/admin/logout',[AdminController::class,'logout'])->name('admin.logout');
+/*CategoryController routes*/
 Route::get('/category/add',[CategoryController::class,'create'])->name('category.create');
 Route::post('/category/add',[CategoryController::class,'store'])->name('category.store');
 Route::get('/category',[CategoryController::class,'index'])->name('category.list');
 Route::get('/category/edit/{id}',[CategoryController::class,'edit'])->name('category.edit');
 Route::post('/category/update/{id}',[CategoryController::class,'update'])->name('category.update');
+Route::get('/category/delete/{id}',[CategoryController::class,'destroy'])->name('category.delete');
+/*CategoryController routes*/
+Route::get('/product',[CategoryController::class,'index'])->name('product.list');
+Route::get('/product/add',[CategoryController::class,'create'])->name('product.create');
+Route::post('/product/add',[CategoryController::class,'store'])->name('product.store');
 });

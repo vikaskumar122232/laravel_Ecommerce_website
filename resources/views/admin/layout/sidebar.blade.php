@@ -28,13 +28,18 @@
             <li><a href="/admin/dashboard"><i class="fa fa-home"></i> Dashboard <span class="fa fa-chevron-down"></span></a>
             </li>
             <li><a href="#"><i class="fa fa-home"></i> Category Manager <span class="fa fa-chevron-down"></span></a>
-             <ul class="nav child_menu" style="display: block;">
+                     <ul class="nav child_menu" style="display: block;">
                       <li class="current-page"><a href="{{route('category.list')}}">Category List</a></li>
                       <li><a href="{{route('category.create')}}">Create Category</a></li>
-                      
                     </ul>
             </li>
-           
+            <li><a href="#"><i class="fa fa-home"></i> Product Manager <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu" style="display: block;">
+                 <li class="current-page"><a href="{{route('product.list')}}">Products List</a></li>
+                 <li><a href="{{route('product.create')}}">Create Products</a></li>
+               </ul>
+       </li>
+
           </ul>
         </div>
       </div>
