@@ -41,7 +41,11 @@ Route::get('/category/edit/{id}',[CategoryController::class,'edit'])->name('cate
 Route::post('/category/update/{id}',[CategoryController::class,'update'])->name('category.update');
 Route::get('/category/delete/{id}',[CategoryController::class,'destroy'])->name('category.delete');
 /*CategoryController routes*/
-Route::get('/product',[CategoryController::class,'index'])->name('product.list');
-Route::get('/product/add',[CategoryController::class,'create'])->name('product.create');
-Route::post('/product/add',[CategoryController::class,'store'])->name('product.store');
+Route::get('/product/add',[ProductController::class,'create'])->name('product.create');
+Route::post('/product/add',[ProductController::class,'store'])->name('product.store');
+Route::get('/product',[ProductController::class,'index'])->name('product.list');
+Route::get('/product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
+Route::post('/product/update/{id}',[ProductController::class,'update'])->name('product.update');
+Route::get('/product/delete/{id}',[ProductController::class,'destroy'])->name('product.delete');
+Route::get('/product/details/{id}',[ProductController::class,'extraDetails'])->name('product.extraDetails');
 });
