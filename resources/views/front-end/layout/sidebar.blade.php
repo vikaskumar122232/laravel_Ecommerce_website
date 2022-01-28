@@ -52,7 +52,7 @@
             </div>
           </div><br/>
         <div class="thumbnail">
-            <img src="themes/images/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
+            <img src="{{asset('themes/images/payment_methods.png')}}" title="Bootshop Payment Methods" alt="Payments Methods">
             <div class="caption">
               <h5>Payment Methods</h5>
             </div>

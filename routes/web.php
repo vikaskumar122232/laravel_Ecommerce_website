@@ -16,15 +16,19 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+Route::get('/',[BaseController::class,'home']);
 Route::get('/home',[BaseController::class,'home'])->name('home');
 Route::get('/special-offer',[BaseController::class,'specialsoffer'])->name('special_offer');
 Route::get('/delivery',[BaseController::class,'delivery'])->name('delivery');
 Route::get('/contact',[BaseController::class,'contact'])->name('contact');
 Route::get('/cart',[BaseController::class,'cart'])->name('cart');
-Route::get('/product-view',[BaseController::class,'productView'])->name('productview');
+Route::get('/productView/{id}',[BaseController::class,'productView'])->name('productView');
+Route::get('user/login',[BaseController::class,'userLogin'])->name('userLogin');
+Route::post('user/login',[BaseController::class,'loginCheck'])->name('loginCheck');
+Route::post('user/register',[BaseController::class,'userStore'])->name('userStore');
 Route::get('/admin/login',[AdminController::class,'login'])->name('admin.login');
 Route::post('/admin/login',[AdminController::class,'makeLogin'])->name('admin.makeLogin');
 Auth::routes();
@@ -48,4 +52,5 @@ Route::get('/product/edit/{id}',[ProductController::class,'edit'])->name('produc
 Route::post('/product/update/{id}',[ProductController::class,'update'])->name('product.update');
 Route::get('/product/delete/{id}',[ProductController::class,'destroy'])->name('product.delete');
 Route::get('/product/details/{id}',[ProductController::class,'extraDetails'])->name('product.extraDetails');
+Route::post('/product/details/{id}',[ProductController::class,'extraDetailsStore'])->name('product.extraDetailsStore');
 });

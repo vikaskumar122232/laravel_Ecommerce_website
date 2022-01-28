@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductDetail;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CategoryController;
@@ -16,8 +17,8 @@ class ProductController extends Controller
     public function index()
     {
       $products = Product::get();
-   
-     
+
+
       return view('admin.product.index',compact('products'));
     }
 
@@ -28,7 +29,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        
+
        $categories = Category::whereNotNULL('category_id')->get();
        return view('admin.product.add', compact('categories'));
     }
@@ -44,8 +45,8 @@ class ProductController extends Controller
         $data = array(
             'category_id'=>$request->category_id,
             'name' =>$request->name,
-            'price'=>$request->price,    
-        
+            'price'=>$request->price,
+
         );
         if ($request->hasfile('image')) {
            $image = $request->file('image');
@@ -56,7 +57,7 @@ class ProductController extends Controller
         $create = Product::create($data);
         return redirect()->route('product.create');
 
-        
+
     }
 
     /**
@@ -93,7 +94,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        
+
        $id = $request->id;
        $data = array(
         'category_id'=>$request->category_id,
@@ -107,7 +108,7 @@ class ProductController extends Controller
          }
          $update = Product::where('id',$id)->update($data);
          return redirect()->route('product.list');
-        
+
     }
 
     /**
@@ -131,9 +132,27 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-public function extraDetails( Request $request){
+public function extraDetails( Request $request)
+{
+    $id = $request->id;
+    $product =Product::where('id',$id)->with('ProductDetail')->first();
+    return view('admin.product.details',compact('id','product'));
+}
+public function extraDetailsStore( Request $request)
+{
+
+    $id = $request->id;
+    $data = array(
+        'title' =>$request->title,
+        'product_id'=>$id,
+        'total_items'=>$request->total_items,
+        'description' =>$request->description,
+    );
+    $detail = ProductDetail::updateOrCreate(
+        ['product_id'=>$id], $data
+    );
+    return redirect()->route('product.list');
 
 }
-
 
 }

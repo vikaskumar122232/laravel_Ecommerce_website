@@ -1,6 +1,6 @@
 @extends('admin.layout.layout')
  @section('content')
- 
+
 <table class="table table-striped table-bordered">
 <thead>
 <tr>
@@ -10,8 +10,8 @@
 <th style="text-align: center;vertical-align: middle;"> Product Price</th>
 <th style="text-align: center;vertical-align: middle;"> Product Image</th>
 <th style="text-align: center;vertical-align: middle;"> Extra Details</th>
-<th style="text-align: center;vertical-align: middle;"> Action</th>    
-   
+<th style="text-align: center;vertical-align: middle;"> Action</th>
+
 </tr>
 </thead>
 <tbody>
@@ -21,7 +21,7 @@
 <td style="text-align: center;vertical-align: middle;">
 @if($product->category_id)
 {{$product->category->name}}
-    
+
 @endif
 </td>
 <td style="text-align: center;vertical-align: middle;">{{$product->name}}</td>
@@ -31,7 +31,7 @@
  <td style="text-align: center;vertical-align: middle;"><a href="{{route('product.edit',$product->id)}}" style="font-size:17px;padding:5px;color:#34eb34"><i class="fa fa-edit"></i> </a> |
          <a href="{{route('product.delete',$product->id)}}"
         style="font-size:17px;padding:5px; color:red;"> <i class="fa fa-trash"></i></a></td>
-</tr>  
+</tr>
 @endforeach
 
 </tbody>
