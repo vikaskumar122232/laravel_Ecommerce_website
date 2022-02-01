@@ -74,8 +74,13 @@
 	 <li class=""><a href="/delivery">Delivery</a></li>
 	 <li class=""><a href="/contact">Contact</a></li>
 	 <li class="">
+	 @if (Auth::user())
+		 <a href="{{route('userLogout')}}"><span class="btn btn-large btn-success">Logout</span></a>	 
+	 @else
+		 
+	
 	 <a href="{{route('userLogin')}}"><span class="btn btn-large btn-success">Login</span></a>
-
+ @endif
 	</li>
     </ul>
   </div>

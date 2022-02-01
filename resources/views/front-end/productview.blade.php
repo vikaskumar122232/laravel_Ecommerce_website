@@ -19,12 +19,24 @@
 				<h3>{{$product->ProductDetail ->title}}</h3>
 				<small>- (14MP, 18x Optical Zoom) 3-inch LCD</small>
 				<hr class="soft"/>
-				<form class="form-horizontal qtyFrm">
+
 				  <div class="control-group">
 					<label class="control-label"><span>₹ {{$product->price}}</span></label>
 					<div class="controls">
-					<input type="number" class="span1" placeholder="Qty."/>
-					  <button type="submit" class="btn btn-large btn-primary pull-right"> Add to cart <i class=" icon-shopping-cart"></i></button>
+                        <form action="{{route('cart.store')}}" method="POST">
+                            @csrf
+					<input type="number" class="span1" name="qty" placeholder="Qty." required/>
+                    <input type="hidden" value="{{$product->id}}" name="product_id"/>
+                    @if (Auth::user())
+                    <button type="submit" class="btn btn-large btn-primary pull-right">
+                         Add to cart <i class=" icon-shopping-cart"></i>
+                        </button>
+                    @else
+                    <button class="btn btn-large btn-primary pull-right"><a style="color:white;text-decoration:none;" href="{{route('userLogin')}}">
+                         Add to cart <i class=" icon-shopping-cart"></i></a>
+                        </button>
+                    @endif
+                </form>
 					</div>
 				  </div>
 				</form>
@@ -43,7 +55,7 @@
 						</select>
 					</div>
 				  </div>
-				</form>
+
 				<hr class="soft clr"/>
 				<p>
 				14 Megapixels. 18.0 x Optical Zoom. 3.0-inch LCD Screen. Full HD photos and 1280 x 720p HD movie capture. ISO sensitivity ISO6400 at reduced resolution.

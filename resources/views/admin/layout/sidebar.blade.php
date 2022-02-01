@@ -38,8 +38,13 @@
                  <li class="current-page"><a href="{{route('product.list')}}">Products List</a></li>
                  <li><a href="{{route('product.create')}}">Create Products</a></li>
                </ul>
-       </li>
+            </li>
 
+             <li><a href="#"><i class="fa fa-home"></i> User Manager <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu" style="display: block;">
+                 <li class="current-page"><a href="{{route('admin.users')}}">List</a></li>
+               </ul>
+            </li>
           </ul>
         </div>
       </div>
