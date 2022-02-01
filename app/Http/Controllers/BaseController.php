@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\Cart;
 use Hash;
 
 class BaseController extends Controller
@@ -31,7 +32,12 @@ public function contact(){
 }
 
 public function cart(){
-    return view('front-end.cart');
+    $carts = [];
+    if (Auth::user()) {
+      $user_id = Auth::user()->id;
+      $carts = Cart::where('user_id',$user_id)->get();
+    }
+    return view('front-end.cart',compact('carts'));
 }
 
 public function productView( Request $request){
@@ -64,10 +70,14 @@ public function userStore(Request $request){
             'role'      =>'user'
         );
     if (Auth::attempt($data)) {
-       return view('front-end.home');
+       return redirect()->route('welcom');
     }else{
         return back()->withErrors(['message'=>'invalid Email or password']);
     }
 
+    }
+    public function userLogout(){
+        Auth::logout();
+        return redirect()->route('userLogin');
     }
 }
